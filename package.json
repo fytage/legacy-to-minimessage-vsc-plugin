@@ -1,0 +1,102 @@
+{
+  "name": "legacy-to-minimessage",
+  "displayName": "Legacy to MiniMessage Converter",
+  "description": "Convert Legacy formatting to MiniMessage quickly (Or the other way, if you prefer!)",
+  "version": "1.1.0",
+  "icon": "icon.png",
+  "license": "MIT",
+  "publisher": "fytage",
+  "engines": {
+    "vscode": "^1.101.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+"contributes": {
+  "commands": [
+    {
+      "command": "legacy-to-minimessage.convert",
+      "title": "Convert Legacy to MiniMessage"
+    },
+	{
+  "command": "minimessage-to-legacy.convert",
+  "title": "Convert MiniMessage to Legacy"
+}
+  ],
+  "menus": {
+    "editor/context": [
+      {
+        "when": "editorHasSelection",
+        "command": "legacy-to-minimessage.convert",
+        "group": "navigation"
+      },
+	  {
+  "when": "editorHasSelection",
+  "command": "minimessage-to-legacy.convert",
+  "group": "navigation"
+}
+    ]
+  },
+  "configuration": {
+    "title": "Legacy to MiniMessage",
+    "properties": {
+      "legacyToMiniMessage.formatChar": {
+        "type": "string",
+        "default": "&",
+        "description": "Primary formatting character used in legacy text (e.g., & or §)."
+      },
+      "legacyToMiniMessage.concise": {
+        "type": "boolean",
+        "default": false,
+        "description": "Use concise MiniMessage tags like <b>, <u>, etc."
+      },
+      "legacyToMiniMessage.rgb": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable RGB color parsing (e.g., &#FF00FF)."
+      },
+      "legacyToMiniMessage.supportBothChars": {
+        "type": "boolean",
+        "default": false,
+        "description": "Convert both '&' and '§' style codes simultaneously."
+      },
+	  "legacyToMiniMessage.removeNewlines": {
+		  "type": "boolean",
+		  "default": false,
+		  "description": "Ask to Remove all newlines and convert text into one line during conversion."
+	  },
+    "legacyToMiniMessage.colorAliases": {
+    "type": "object",
+    "default": {},
+    "description": "Override default MiniMessage color tags. E.g., { \"dark_red\": \"#HEX123\" } Useful if you have a custom server \"Gold\" Color or something."
+    },
+    "legacyToMiniMessage.autoConvertOnPaste": {
+      "type": "boolean",
+      "default": false,
+      "description": "Automatically convert legacy formatting when pasting text into the editor."
+    }
+    }
+  }
+},
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.101.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "eslint": "^9.25.1",
+    "typescript": "^5.8.3",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}

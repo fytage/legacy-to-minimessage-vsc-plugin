@@ -1,9 +1,4 @@
-## Features
-
-* Select text, right click and convert from legacy to minimessage format or the other way (Minecraft)
-* Options to ask to remove newlines, support both formatting characters (§ and &) and more
-
-## Release Notes
+# Change Log
 
 ### 1.1.0
 * Added option to convert on paste
